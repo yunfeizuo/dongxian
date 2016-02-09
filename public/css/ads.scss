@@ -1,0 +1,82 @@
+.logo-banner {
+  width: 100%;
+  border: 2px darkorange solid;
+  margin-bottom: 2px;
+}
+
+.categories {
+  width: 100%;
+  overflow: hidden;
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #FFF;
+    
+    li {
+      float: left;
+      a {
+        display: block;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+      
+      a.selected {
+        color: red;
+        border-bottom: 2px red solid;
+      }
+    }
+  }
+}
+
+
+.t_slider_banner.t_slider_banner_high .banner_list,.t_slider_banner.t_slider_banner_high .banner_list ul li a {
+  height: 11.7rem
+}
+
+.t_slider_banner .banner_list {
+  height: 11.1rem;
+  overflow: hidden
+}
+
+.t_slider_banner .banner_list ul {
+  position: relative;
+  transition: left .5s;
+  -moz-transition: left .5s;
+  -webkit-transition: left .5s;
+  width: 1500rem
+}
+
+.t_slider_banner .banner_list ul li {
+  float: left;
+  width: 37.5rem
+}
+
+.t_slider_banner .banner_list ul li a {
+  display: block;
+  height: 11.1rem
+}
+
+.t_slider_banner .banner_list .banner_point {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: .5rem;
+  margin-left: -2rem;
+  left: 50%
+}
+
+.t_slider_banner .banner_list .banner_point span {
+  float: left;
+  width: .4rem;
+  height: .4rem;
+  margin: 0 .25rem;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,.5)
+}
+
+.t_slider_banner .banner_list .banner_point span.active {
+  background-color: #fff
+}

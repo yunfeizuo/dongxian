@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>东翔超市</title>
+  <style type="text/css" id="gwd-text-style">
+    p {
+      margin: 0px;
+    }
+    h1 {
+      margin: 0px;
+      padding-left: 100px;
+      color: yellow;
+      font-size: 10em;
+      font-family: Arial Black;
+      text-decoration: underline;
+      text-shadow: 1px 1px  red,
+        2px 1px  red,
+        3px 2px  red,
+        4px 2px  red,
+        5px 3px  red,
+        6px 3px  red,
+        7px 4px  red,
+        8px 4px  red,
+        10px 5px  red,
+        12px 6px  red,
+        14px 7px  red,
+        16px 8px  red,
+        18px 9px  red,
+        20px 10px  red,
+        22px 11px  red,
+        24px 12px  red,
+        26px 13px  red,
+        28px 14px  red,
+        30px 15px  red,
+        32px 16px  red,
+        34px 17px  red,
+        35px 18px  red,
+        36px 18px  red,
+        37px 19px  red,
+        38px 19px  red;
+    }
+    h2 {
+      margin: 0px;
+    }
+    h3 {
+      margin: 0px;
+    }
+    html, body {
+      margin: 0px;
+    }
+    html {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 5px ;
+      background-color: red;
+      background-image: url(http://images.all-free-download.com/images/graphiclarge/abstract_technical_background_310934.jpg);
+    }
+    *, *:before, *:after {
+      -webkit-box-sizing: inherit;
+      -moz-box-sizing: inherit;
+      box-sizing: inherit;
+      }
+
+    #logo {
+      width: 100%;
+      height: 10vw;
+      background-color: white;
+      padding: 5px;
+    }
+    #logo-img {
+      width: 100%;
+      height: 100%;
+    }
+    #primary-img {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .flex-container {
+      background-color: white;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+    .flex-item {
+      width: 50%;
+      border: 5px solid #006600;
+      font-weight: bold;
+      font-size: 1em;
+      position: relative;
+    }
+    .product-img {
+      margin: 10%;
+      width: 80%;
+    }
+    .product-img-100 {
+      width: 100%;
+      height: 100%;
+    }
+    .tag {
+      position: absolute;
+      left: 1%;
+      top: 1%;
+      width: 33%;
+      /*height: 33%;*/
+      opacity: 0.999;
+    }
+    .price-label {
+      position: absolute;
+      bottom: 8%;
+      right: 1%;
+      width: 50%;
+      opacity: .9;
+      text-align: center;
+      font: 8vw bold 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+      overflow: hidden;
+      /*border: 5px solid yellow;*/
+      /*border-radius: 15px;*/
+      color: red;
+      text-shadow: -2px 0 yellow, 0 2px yellow, 2px 0 yellow, 0 -2px yellow;
+      /*background-image: url("");*/
+      /*background-size: 100%;*/
+    }
+    .price-label .minor {
+      font-size: .5em;
+      vertical-align: super;
+    }
+    .description {
+      position: absolute;
+      bottom: 0;
+      width: 60%;
+      /*text-align: center;*/
+      font-size: 3vw;
+    }
+    .note {
+      position: absolute;
+      top: 1%;
+      right: 1%;
+      max-width: 67%;
+      font-size: 3vw;
+      color: white;
+      border-radius: 10px;
+      background-color: #007fff;
+      padding: 0 2%;
+    }
+    .red {
+      color: red;
+    }
+    .red-background {
+      background-color: red;
+    }
+    .yellow {
+      color: yellow;
+    }
+    .yellow-background {
+      background-color: yellow;
+    }
+    .white {
+      color: white;
+    }
+    .white-background {
+      background-color: white;
+    }
+    
+    .auto-price-label {
+      position: absolute;
+      bottom: 1%;
+      right: 1%;
+      width: 40%;
+      /*width: 60%;*/
+      /*background: url('/tags/price-label-1.png');*/
+      opacity: .9;
+      text-align: center;
+      border: 1px solid;
+      /*font: 100vw bold 'Arial Black', 'Arial Bold', Gadget, sans-serif;*/
+      color: red;
+    }
+    .auto-price-label .price {
+      position: absolute;
+      left: 15%;
+      top: 45%;
+      width: 69%;
+      height: 36%;
+      border: 1px solid;
+      font: 20px bold 'Arial Black', 'Arial Bold', Gadget, sans-serif
+      
+    }
+    .auto-price-label .price .cents{
+      vertical-align: super;
+      font-size: .5em;
+    }
+    .auto-price-label > img {
+      /*position: absolute;*/
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  
+    <div id="logo">
+      <img id="logo-img" src="/images/Header.png" />
+    </div>
+    <div id="primary">
+      <img id="primary-img" src="/images/primary.png" />
+    </div>
+    <div id="main-panel">
+      <div class="flex-container">
+        <div class="flex-item">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/tags/hot-item-sale-2.png" />
+          <div class="price-label">
+            <span class="price-span">15</span><span class="minor">.50</span>
+          </div>
+          <div class="description">
+              商品名称与规格
+            </div>
+          <div class="note">
+            每人限购2件
+          </div>
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/tags/hot-new.png" />
+          <canvas class="auto-price-label "></canvas>
+          <!--<div class="auto-price-label">-->
+            <!--<img src="/tags/price-label-1.png" />-->
+            <!--<div class="price">-->
+            <!--  <span class="price-span">1<span class="cents">.50</span></span>-->
+            <!--</div>-->
+          <!--</div>-->
+          <div class="description">
+              商品名称与规格
+          </div>
+          <div class="note">
+            每人限购2件
+          </div>  
+        </div>
+        <div class="flex-item yellow-background">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/images/tag-free.png" />
+          <div class="note">
+            满98元送维达抽纸一盒
+          </div> 
+        </div>
+        <div class="flex-item ">
+          <img class="product-img-100" src="http://www.tgac.ac.uk/uploads/images/Tomatoes_iStock_000005591923Small[1].JPG" />
+          <img class="tag" src="/images/tag-special.png" />
+          <div class="price-label yellow">
+            <span>1</span><span class="minor">.50</span>
+          </div>
+          <div class="description white">
+              西红柿
+          </div>
+          <div class="note">
+            每人限购2斤
+          </div>
+        </div>
+        <div class="flex-item ">
+          <img class="product-img-100" src="http://www.tgac.ac.uk/uploads/images/Tomatoes_iStock_000005591923Small[1].JPG" />
+          <img class="tag" src="/images/tag-special.png" />
+          <div class="price-label yellow">
+            <span>1</span><span class="minor">.50</span>
+          </div>
+          <div class="description white">
+              西红柿
+          </div>
+          <div class="note">
+            每人限购2斤
+          </div>
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="http://www.extremetech.com/wp-content/uploads/2013/06/iPhone-iOS7-New.jpg" />
+          <div class="auto-price-label">
+            <img src="/tags/price-label-1.png" />
+            <div class="price">
+              <span class="price-span">1999<span class="cents">.99</span></span>
+            </div>
+          </div>
+          <div class="description">
+              商品名称与规格
+          </div>
+          <div class="note" style="left: 1%;">
+            每人限购2件
+          </div>  
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/images/tag-special.png" />
+          <div class="price-label">
+            <span>15</span><span class="minor">.50</span>
+          </div>
+          <div class="description">
+              商品名称与规格
+            </div>
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/tags/low-price.png" />
+          <div class="price-label">
+            <span>15</span><span class="minor">.50</span>
+          </div>
+          <div class="description">
+              商品名称与规格
+            </div>
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/tags/on-sale-corner.png" />
+          <div class="price-label">
+            <span>15</span><span class="minor">.50</span>
+          </div>
+          <div class="description">
+              商品名称与规格
+            </div>
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/images/tag-special.png" />
+          <div class="price-label">
+            <span>15</span><span class="minor">.50</span>
+          </div>
+          <div class="description">
+              商品名称与规格
+            </div>
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="http://www.extremetech.com/wp-content/uploads/2013/06/iPhone-iOS7-New.jpg" />
+          <img class="tag" src="/images/tag-special.png" />
+          <div class="price-label">
+            <span>15</span><span class="minor">.50</span>
+          </div>
+          <div class="description">
+              商品名称与规格
+            </div>
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="https://phgcdn.com/images/uploads/MLAEH/corporatemasthead/grand-hotel-excelsior_masthead.jpg" />
+          <img class="tag" src="/images/tag-special.png" />
+          <div class="price-label">
+            1.50
+          </div>
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/images/tag-special.png" />
+          <div class="price-label">
+            15.50
+          </div>
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/images/tag-special.png" />
+          <div class="auto-price-label">
+            <img src="/tags/price-label-1.png">
+              <div>
+                155.50
+              </div>
+            </img>
+            
+          </div>
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/images/tag-special.png" />
+        </div>
+        <div class="flex-item">
+          <img class="product-img" src="/images/cup.png" />
+          <img class="tag" src="/images/tag-special.png" />
+        </div>
+
+      </div>
+    </div>
+  
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script type="text/javascript">
+    $('.flex-item').height($('.flex-item').width());
+  </script>
+  <script type="text/javascript" >
+    (function($) {
+  $('canvas.auto-price-label').each(function() {
+    var c = $(this);
+    var backgroundImgUrl = c.attr('data-img');
+    var price = c.attr('data-price');
+    var ctx = this.getContext('2d');
+    var width = c.width(), height = c.height();
+    
+    ctx.font = "120px bold 'Arial Black', 'Arial Bold', Gadget, sans-serif";
+    // ctx.textAlign = 'center';
+    ctx.textBaseline = 'hanging';
+    ctx.fillText('123.50', 0, 0);//width/2, height/2);
+  })
+})(jQuery);
+  </script>
+</body>
+
+</html>
