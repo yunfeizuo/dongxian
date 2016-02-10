@@ -17,6 +17,7 @@
   <meta name="description" content="东翔超市" />
   <meta name="Keywords" content="东翔超市" />
   <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+  <script src="//cdn.bootcss.com/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
   <link rel="stylesheet" href="http://static.360buyimg.com/panda_cube/channel/dist/v20151209/t_base-min.css" />
   <style>
     body {
@@ -75,12 +76,12 @@
   <div class="grid j_grid ">
     <a href="#" class="item p-item J_ping" report-eventid="MTopic_recommend" link-transform="true">
       <div class="img_grid">
-        <img src="{{imgUrl}}" alt="" img-type="product" data-img-hide="false" load="true">
+        <img class="lazy" data-original="{{imgUrl}}" alt="" img-type="product" data-img-hide="false" load="true">
         <!--<div class="tag">姣擯C绔渷<span class="j-gap"></span>鍏�</div>-->
       </div>
       <p class="txt">{{name}}</p>
       <div class="price_area">
-        <i class="vip"></i>
+        <!--<i class="vip"></i>-->
         <p class="price"><strike class="crossout">¥234.00</strike> ¥{{price}}</p>
       </div>
     </a>
@@ -167,13 +168,58 @@
       name: '麦德氏（in-plus）宠物赢发育整肠多维酵素280g',
       imgUrl: 'http://img20.360buyimg.com/n1/s338x338_jfs/t2236/358/1646790169/378555/9b38c11a/5668dc0aN61b5be38.jpg!q100.jpg',
       price: '234.99'
+    },{
+      name: '鏅媺杈惧绾� 绮惧搧椹兼瘺鍐瀛� 鍙屼汉琚姱 200*230cm',
+      imgUrl: 'http://img12.360buyimg.com/n1/s350x350_jfs/t2269/170/849302592/457470/d3b26e02/5631fb41Nc78f219b.jpg!q100.jpg',
+      price: '259.00',
+      categories: ['家居用品','家居']
+    }, {
+      name: 'LOVO 缃楄幈瀹剁汉鍥涗欢濂� 鍏ㄦ鏂滅汗鍗拌姳鍙屼汉鍔犲ぇ1.8绫冲簥 妯辨鏍煎瓙(钃濊壊)',
+      imgUrl: 'http://img13.360buyimg.com/n1/s572x572_jfs/t493/44/1401841968/320772/4dddab9b/54d1b3f3Nd3358bc0.jpg!q100.jpg',
+      price: '1259.00',
+      categories: ['家居用品','家居']
+    }, {
+      name: '麦德氏（in-plus）宠物赢发育整肠多维酵素280g',
+      imgUrl: 'http://img20.360buyimg.com/n1/s338x338_jfs/t2236/358/1646790169/378555/9b38c11a/5668dc0aN61b5be38.jpg!q100.jpg',
+      price: '234.99'
+    },{
+      name: '鏅媺杈惧绾� 绮惧搧椹兼瘺鍐瀛� 鍙屼汉琚姱 200*230cm',
+      imgUrl: 'http://img12.360buyimg.com/n1/s350x350_jfs/t2269/170/849302592/457470/d3b26e02/5631fb41Nc78f219b.jpg!q100.jpg',
+      price: '259.00',
+      categories: ['家居用品','家居']
+    }, {
+      name: 'LOVO 缃楄幈瀹剁汉鍥涗欢濂� 鍏ㄦ鏂滅汗鍗拌姳鍙屼汉鍔犲ぇ1.8绫冲簥 妯辨鏍煎瓙(钃濊壊)',
+      imgUrl: 'http://img13.360buyimg.com/n1/s572x572_jfs/t493/44/1401841968/320772/4dddab9b/54d1b3f3Nd3358bc0.jpg!q100.jpg',
+      price: '1259.00',
+      categories: ['家居用品','家居']
+    }, {
+      name: '麦德氏（in-plus）宠物赢发育整肠多维酵素280g',
+      imgUrl: 'http://img20.360buyimg.com/n1/s338x338_jfs/t2236/358/1646790169/378555/9b38c11a/5668dc0aN61b5be38.jpg!q100.jpg',
+      price: '234.99'
+    },{
+      name: '鏅媺杈惧绾� 绮惧搧椹兼瘺鍐瀛� 鍙屼汉琚姱 200*230cm',
+      imgUrl: 'http://img12.360buyimg.com/n1/s350x350_jfs/t2269/170/849302592/457470/d3b26e02/5631fb41Nc78f219b.jpg!q100.jpg',
+      price: '259.00',
+      categories: ['家居用品','家居']
+    }, {
+      name: 'LOVO 缃楄幈瀹剁汉鍥涗欢濂� 鍏ㄦ鏂滅汗鍗拌姳鍙屼汉鍔犲ぇ1.8绫冲簥 妯辨鏍煎瓙(钃濊壊)',
+      imgUrl: 'http://m.360buyimg.com/n12/jfs/t508/149/1253450128/194551/7199ab84/54bf480bNc676b382.jpg!q70.jpg',
+      price: '1259.00',
+      categories: ['家居用品','家居']
+    }, {
+      name: '麦德氏（in-plus）宠物赢发育整肠多维酵素280g',
+      imgUrl: 'http://img20.360buyimg.com/n1/s338x338_jfs/t2236/358/1646790169/378555/9b38c11a/5668dc0aN61b5be38.jpg!q100.jpg',
+      price: '234.99'
     }
   ];
 
   renderProducts(products);
   CategoryTab.onTabSwitch = function() {
     renderProducts(products);
-  }
+    $("img.lazy").lazyload();
+  };
+
+  $("img.lazy").lazyload();
 
   $('.square').each(function() {
     $(this).height($(this).width());
