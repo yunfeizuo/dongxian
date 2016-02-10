@@ -17,6 +17,7 @@
   <meta name="description" content="东翔超市" />
   <meta name="Keywords" content="东翔超市" />
   <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+  <script src="//cdn.bootcss.com/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
   <link rel="stylesheet" href="http://static.360buyimg.com/panda_cube/channel/dist/v20151209/t_base-min.css" />
   <style>
     body {
@@ -75,7 +76,7 @@
   <div class="grid j_grid ">
     <a href="#" class="item p-item J_ping" report-eventid="MTopic_recommend" link-transform="true">
       <div class="img_grid">
-        <img src="{{imgUrl}}" alt="" img-type="product" data-img-hide="false" load="true">
+        <img class="lazy" data-original="{{imgUrl}}" alt="" img-type="product" data-img-hide="false" load="true">
         <!--<div class="tag">姣擯C绔渷<span class="j-gap"></span>鍏�</div>-->
       </div>
       <p class="txt">{{name}}</p>
@@ -212,10 +213,16 @@
     }
   ];
 
+  var lazyloadSettings = {
+    placeholder : "/images/placeholder.png",
+    effect : "fadeIn"
+  };
   renderProducts(products);
   CategoryTab.onTabSwitch = function() {
     renderProducts(products);
+    $("img.lazy").lazyload(lazyloadSettings);
   };
+  $("img.lazy").lazyload(lazyloadSettings);
 
   $('.square').each(function() {
     $(this).height($(this).width());
