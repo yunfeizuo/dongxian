@@ -216,7 +216,10 @@
   renderProducts(products);
   CategoryTab.onTabSwitch = function() {
     renderProducts(products);
-    $("img.lazy").lazyload();
+    $("img.lazy").lazyload({
+      placeholder : "http://assets.jq22.com/plugin/pc-49b216ce-29c9-11e4-a320-000c29f61318.png",
+      effect : "fadeIn"
+    });
   };
 
   $("img.lazy").lazyload();
