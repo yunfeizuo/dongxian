@@ -11,11 +11,8 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.get('/', function (req, res) {
+  res.send('GET request to homepage');
 });
 
 app.get('/weixin', function(req, res) {
@@ -39,7 +36,7 @@ app.post('/weixin', xmlparser({trim: false, explicitArray: false}), function(req
         <FromUserName>{1}</FromUserName>\
         <CreateTime>{2}</CreateTime>\
         <MsgType>text</MsgType>\
-        <Content><![CDATA[你好]]></Content>\
+        <Content><![CDATA[您好!]]></Content>\
       </xml>';
   msg = msg.replace('{0}', req.body.xml.fromusername);
   msg = msg.replace('{1}', req.body.xml.tousername);
@@ -47,6 +44,14 @@ app.post('/weixin', xmlparser({trim: false, explicitArray: false}), function(req
   res.header("Content-Type", 'application/xml');
   res.send(msg);
 });
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
 
 
 module.exports = app;
