@@ -17,7 +17,6 @@
   <meta name="description" content="东翔超市" />
   <meta name="Keywords" content="东翔超市" />
   <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
-  <!--<script src="//cdn.bootcss.com/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>-->
   <link rel="stylesheet" href="http://static.360buyimg.com/panda_cube/channel/dist/v20151209/t_base-min.css" />
   <style>
     body {
@@ -122,12 +121,10 @@
   <div class="grid j_grid " data-product-id="{{index}}">
     <a href="#" class="item p-item J_ping" report-eventid="MTopic_recommend" link-transform="true">
       <div class="img_grid">
-        <img src="{{imgUrl}}" alt="" img-type="product" data-img-hide="false" load="true">
-        <!--<div class="tag">姣擯C绔渷<span class="j-gap"></span>鍏�</div>-->
+        <img class="samLazyImg" src="/images/placeholder.png" data-src="{{imgUrl}}" alt="" img-type="product" data-img-hide="false" load="true">
       </div>
       <p class="txt">{{name}}</p>
       <div class="price_area">
-        <!--<i class="vip"></i>-->
         <p class="price"><strike class="crossout">¥234.00</strike> ¥{{price}}</p>
       </div>
     </a>
@@ -139,11 +136,7 @@
   var renderProducts = function(products) {
     var newContent = '';
     var selectedCategory = CategoryTab.activeTab.attr('data-category');
-    products.filter(function (product) {
-//      var v = selectedCategory === 'all' || ($.isArray(product.categories) && $.inArray(selectedCategory, product.categories) !== -1);
-//      return v;
-      return true;
-    }).map(function(product, index) {
+    products.map(function(product, index) {
       var prodTemplate = $('#product-template');
       newContent += prodTemplate.html()
               .replace(/{{index}}/ig, index)
@@ -202,7 +195,7 @@
       categories: ['食品']
     }, {
       name: '百威啤酒 600毫升 瓶装',
-      imgUrl: '/images/products/baiwei-beer-600ml.webp',
+      imgUrl: '/images/products/baiwei-beer-600ml.jpg',
       price: '1259.00',
       categories: ['食品']
     }, {
@@ -258,13 +251,83 @@
     }
   ];
 
-  var lazyloadSettings = {
-    placeholder : "/images/placeholder.png",
-    effect : "fadeIn"
-  };
   renderProducts(products);
   $('.square').each(function() {
     $(this).height($(this).width());
+  });
+
+  var lazyload = {
+    init : function(opt){
+      var that = this,
+              op = {
+                anim: true,
+                extend_height:0,
+                selectorName:"img",
+                realSrcAtr:"data-src"
+              };
+      // 合并对象，已有的{anim:true}+用户自定义对象。也就是op = op + opt
+      $.extend(op,opt);
+      // 调用lazyload.img.init(op)函数
+      that.img.init(op);
+
+    },
+
+    img : {
+      init : function(n){
+
+        var that = this,
+                selectorName = n.selectorName,
+                realSrcAtr = n.realSrcAtr,
+                anim = n.anim;
+//              console.log(n);
+
+        // 要加载的图片是不是在指定窗口内
+        function inViewport( el ) {
+          // 当前窗口的顶部
+          var top = window.pageYOffset,
+          // 当前窗口的底部
+                  btm = window.pageYOffset + window.innerHeight,
+          // 元素所在整体页面内的y轴位置
+                  elTop = $(el).offset().top;
+          // 判断元素，是否在当前窗口，或者当前窗口延伸400像素内
+          return elTop >= top && elTop - n.extend_height <= btm;
+        }
+
+        // 滚动事件里判断，加载图片
+        $(window).on('scroll', function() {
+          $(selectorName).each(function(index,node) {
+            var $this = $(this);
+
+            if(!$this.attr(realSrcAtr) || !inViewport(this)){
+              return;
+            }
+
+            act($this);
+
+          })
+        }).trigger('scroll');
+
+        // 展示图片
+        function act(_self){
+          // 已经加载过了，则中断后续代码
+          if (_self.attr('lazyImgLoaded')) return;
+          var img = new Image(),
+                  original = _self.attr('data-src');
+          // 图片请求完成后的事件，把dataimg指定的图片，放到src里面，浏览器显示
+          img.onload = function() {
+            _self.attr('src', original);
+            anim && _self.css({ opacity: .2 }).animate({ opacity: 1 }, 280);
+          };
+          // 当你设置img.src的时候，浏览器就在发送图片请求了
+          original && (img.src = original);
+          _self.attr('lazyImgLoaded', true);
+        }
+      }
+    }
+  };
+
+  lazyload.init({
+    selectorName:".samLazyImg"
   });
 
   var filter = function() {
@@ -277,7 +340,7 @@
       if (v) productDiv.show();
       else productDiv.hide();
     });
-//    $("img.lazy").lazyload(lazyloadSettings);
+    $(window).scroll();
   };
 
   CategoryTab.onTabSwitch = filter;
