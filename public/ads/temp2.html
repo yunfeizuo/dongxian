@@ -17,7 +17,7 @@
   <meta name="description" content="东翔超市" />
   <meta name="Keywords" content="东翔超市" />
   <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
-  <script src="//cdn.bootcss.com/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+  <!--<script src="//cdn.bootcss.com/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>-->
   <link rel="stylesheet" href="http://static.360buyimg.com/panda_cube/channel/dist/v20151209/t_base-min.css" />
   <style>
     body {
@@ -72,21 +72,6 @@
 </head>
 
 <body>
-<script id="product-template" type="text/template">
-  <div class="grid j_grid ">
-    <a href="#" class="item p-item J_ping" report-eventid="MTopic_recommend" link-transform="true">
-      <div class="img_grid">
-        <img class="lazy" data-original="{{imgUrl}}" alt="" img-type="product" data-img-hide="false" load="true">
-        <!--<div class="tag">姣擯C绔渷<span class="j-gap"></span>鍏�</div>-->
-      </div>
-      <p class="txt">{{name}}</p>
-      <div class="price_area">
-        <!--<i class="vip"></i>-->
-        <p class="price"><strike class="crossout">¥234.00</strike> ¥{{price}}</p>
-      </div>
-    </a>
-  </div>
-</script>
 
 <div class="logo-banner">
   <img src="/images/logo-banner.png" />
@@ -133,17 +118,35 @@
   <div id="products" class="block_grid_2 j_product-list"></div>
 </div>
 
+<script id="product-template" type="text/template">
+  <div class="grid j_grid " data-product-id="{{index}}">
+    <a href="#" class="item p-item J_ping" report-eventid="MTopic_recommend" link-transform="true">
+      <div class="img_grid">
+        <img src="{{imgUrl}}" alt="" img-type="product" data-img-hide="false" load="true">
+        <!--<div class="tag">姣擯C绔渷<span class="j-gap"></span>鍏�</div>-->
+      </div>
+      <p class="txt">{{name}}</p>
+      <div class="price_area">
+        <!--<i class="vip"></i>-->
+        <p class="price"><strike class="crossout">¥234.00</strike> ¥{{price}}</p>
+      </div>
+    </a>
+  </div>
+</script>
+
 <script type="text/javascript" src="/lib/tab.js"></script>
 <script type="text/javascript">
   var renderProducts = function(products) {
     var newContent = '';
     var selectedCategory = CategoryTab.activeTab.attr('data-category');
     products.filter(function (product) {
-      var v = selectedCategory === 'all' || ($.isArray(product.categories) && $.inArray(selectedCategory, product.categories) !== -1);
-      return v;
-    }).map(function(product) {
+//      var v = selectedCategory === 'all' || ($.isArray(product.categories) && $.inArray(selectedCategory, product.categories) !== -1);
+//      return v;
+      return true;
+    }).map(function(product, index) {
       var prodTemplate = $('#product-template');
       newContent += prodTemplate.html()
+              .replace(/{{index}}/ig, index)
               .replace(/{{name}}/ig, product.name)
               .replace(/{{imgUrl}}/ig, product.imgUrl)
               .replace(/{{price}}/ig, product.price);
@@ -153,7 +156,7 @@
 
   var products = [
     {
-      name: '99长城干红 750ml',
+      name: '99长城干红 750毫升',
       imgUrl: '/images/products/wine-cc-gh-750ml.jpg',
       price: '90.00',
       categories: ['食品']
@@ -162,67 +165,76 @@
       imgUrl: '/images/products/dove-xy-98g.jpg',
       price: '44.50',
       categories: ['食品']
-    },,{
-      name: '伊利纯牛奶 250ml*16盒',
+    },{
+      name: '伊利纯牛奶 250毫升*16盒',
       imgUrl: '/images/products/yili-milk-6x250ml.jpg',
       price: '44.50',
       categories: ['食品']
     }, {
-      name: '鏅',
-      imgUrl: 'http://img12.360buyimg.com/n1/s350x350_jfs/t2269/170/849302592/457470/d3b26e02/5631fb41Nc78f219b.jpg!q100.jpg',
+      name: '罐装王老吉 310毫升',
+      imgUrl: '/images/products/wanglaoji-310ml.jpg',
       price: '259.00',
-      categories: ['家居用品','生鲜']
+      categories: ['食品']
     }, {
-      name: 'LOVO 缃楄幈瀹剁汉鍥涗欢濂� 鍏ㄦ鏂滅汗鍗拌姳鍙屼汉鍔犲ぇ1.8绫冲簥 妯辨鏍煎瓙(钃濊壊)',
-      imgUrl: 'http://img13.360buyimg.com/n1/s572x572_jfs/t493/44/1401841968/320772/4dddab9b/54d1b3f3Nd3358bc0.jpg!q100.jpg',
+      name: '可口可乐 雪碧 2升装',
+      imgUrl: '/images/products/coke-sprite-2l.jpg',
+      price: '259.00',
+      categories: ['食品']
+    }, {
+      name: '百威啤酒 600毫升 瓶装',
+      imgUrl: '/images/products/baiwei-beer-600ml.webp',
       price: '1259.00',
-      categories: ['家居用品','食品']
+      categories: ['食品']
     }, {
-      name: '麦德氏（in-plus）宠物赢发育整肠多维酵素280g',
-      imgUrl: 'http://img20.360buyimg.com/n1/s338x338_jfs/t2236/358/1646790169/378555/9b38c11a/5668dc0aN61b5be38.jpg!q100.jpg',
-      price: '234.99'
+      name: '金龙鱼食用调和油 5升装',
+      imgUrl: '/images/products/jly-mixed-oil-5l.jpg',
+      price: '234.99',
+      categories: ['食品']
     },{
-      name: '鏅媺杈惧绾� 绮惧搧椹兼瘺鍐瀛� 鍙屼汉琚姱 200*230cm',
-      imgUrl: 'http://img12.360buyimg.com/n1/s350x350_jfs/t2269/170/849302592/457470/d3b26e02/5631fb41Nc78f219b.jpg!q100.jpg',
+      name: '旺旺雪饼 84克',
+      imgUrl: '/images/products/wangwang-84g.jpg',
       price: '259.00',
-      categories: ['家居用品','用品']
+      categories: ['食品']
     }, {
-      name: 'LOVO 缃楄幈瀹剁汉鍥涗欢濂� 鍏ㄦ鏂滅汗鍗拌姳鍙屼汉鍔犲ぇ1.8绫冲簥 妯辨鏍煎瓙(钃濊壊)',
-      imgUrl: 'http://img13.360buyimg.com/n1/s572x572_jfs/t493/44/1401841968/320772/4dddab9b/54d1b3f3Nd3358bc0.jpg!q100.jpg',
+      name: '舒肤佳纯白沐浴露 720毫升',
+      imgUrl: '/images/products/safeguard-body-wash-720ml.jpg',
       price: '1259.00',
-      categories: ['家居用品','生鲜']
+      categories: ['用品']
     }, {
-      name: '麦德氏（in-plus）宠物赢发育整肠多维酵素280g',
-      imgUrl: 'http://img20.360buyimg.com/n1/s338x338_jfs/t2236/358/1646790169/378555/9b38c11a/5668dc0aN61b5be38.jpg!q100.jpg',
-      price: '234.99'
+      name: '飘柔焗油去屑洗发露 200毫升',
+      imgUrl: '/images/products/rejoice-200ml.jpg',
+      price: '234.99',
+      categories: ['用品']
     },{
-      name: '鏅媺杈惧绾� 绮惧搧椹兼瘺鍐瀛� 鍙屼汉琚姱 200*230cm',
-      imgUrl: 'http://img12.360buyimg.com/n1/s350x350_jfs/t2269/170/849302592/457470/d3b26e02/5631fb41Nc78f219b.jpg!q100.jpg',
+      name: '清风冬夏卷纸 10卷',
+      imgUrl: '/images/products/breeze-bath-tissue-10-roles.jpg',
       price: '259.00',
-      categories: ['家居用品','食品']
+      categories: ['用品']
     }, {
-      name: 'LOVO 缃楄幈瀹剁汉鍥涗欢濂� 鍏ㄦ鏂滅汗鍗拌姳鍙屼汉鍔犲ぇ1.8绫冲簥 妯辨鏍煎瓙(钃濊壊)',
-      imgUrl: 'http://img13.360buyimg.com/n1/s572x572_jfs/t493/44/1401841968/320772/4dddab9b/54d1b3f3Nd3358bc0.jpg!q100.jpg',
+      name: '黑人双重薄荷牙膏 90克',
+      imgUrl: '/images/products/darlie-tooth-paste-90g.jpeg',
       price: '1259.00',
-      categories: ['家居用品','用品']
+      categories: ['用品']
     }, {
-      name: '麦德氏（in-plus）宠物赢发育整肠多维酵素280g',
-      imgUrl: 'http://img20.360buyimg.com/n1/s338x338_jfs/t2236/358/1646790169/378555/9b38c11a/5668dc0aN61b5be38.jpg!q100.jpg',
-      price: '234.99'
+      name: '立白超洁清新洗衣粉 1.068千克',
+      imgUrl: '/images/products/liby-detergent-1068g.jpeg',
+      price: '234.99',
+      categories: ['用品']
     },{
-      name: '鏅媺杈惧绾� 绮惧搧椹兼瘺鍐瀛� 鍙屼汉琚姱 200*230cm',
-      imgUrl: 'http://img12.360buyimg.com/n1/s350x350_jfs/t2269/170/849302592/457470/d3b26e02/5631fb41Nc78f219b.jpg!q100.jpg',
+      name: '立白金桔洗洁精 1.29千克',
+      imgUrl: '/images/products/liby-jj-dish-liquid-1290g.jpeg',
       price: '259.00',
-      categories: ['家居用品','食品']
+      categories: ['用品']
     }, {
-      name: 'LOVO 缃楄幈瀹剁汉鍥涗欢濂� 鍏ㄦ鏂滅汗鍗拌姳鍙屼汉鍔犲ぇ1.8绫冲簥 妯辨鏍煎瓙(钃濊壊)',
-      imgUrl: 'http://m.360buyimg.com/n12/jfs/t508/149/1253450128/194551/7199ab84/54bf480bNc676b382.jpg!q70.jpg',
+      name: '深层洁净亮白增艳洗衣液 薰衣草香 2千克',
+      imgUrl: '/images/products/blue-moon-detegent-2l.jpeg',
       price: '1259.00',
-      categories: ['家居用品','用品']
+      categories: ['用品']
     }, {
-      name: '麦德氏（in-plus）宠物赢发育整肠多维酵素280g',
-      imgUrl: 'http://img20.360buyimg.com/n1/s338x338_jfs/t2236/358/1646790169/378555/9b38c11a/5668dc0aN61b5be38.jpg!q100.jpg',
-      price: '234.99'
+      name: '六神Liushen 驱蚊花露水195毫升',
+      imgUrl: '/images/products/liushen-195ml.jpeg',
+      price: '10.99',
+      categories: ['用品']
     }
   ];
 
@@ -231,15 +243,26 @@
     effect : "fadeIn"
   };
   renderProducts(products);
-  CategoryTab.onTabSwitch = function() {
-    renderProducts(products);
-    $("img.lazy").lazyload(lazyloadSettings);
-  };
-  $("img.lazy").lazyload(lazyloadSettings);
-
   $('.square').each(function() {
     $(this).height($(this).width());
   });
+
+  var filter = function() {
+    var productDivs = $('#products > div');
+    productDivs.each(function() {
+      productDiv = $(this);
+      var selectedCategory = CategoryTab.activeTab.attr('data-category');
+      var product = products[productDiv.attr('data-product-id')];
+      var v = selectedCategory === 'all' || ($.isArray(product.categories) && $.inArray(selectedCategory, product.categories) !== -1);
+      if (v) productDiv.show();
+      else productDiv.hide();
+    });
+//    $("img.lazy").lazyload(lazyloadSettings);
+  };
+
+  CategoryTab.onTabSwitch = filter;
+  filter();
+
 </script>
 <script type="text/javascript" src="/lib/slideshow.js"></script>
 
