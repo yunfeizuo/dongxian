@@ -1,3 +1,51 @@
+body {
+  max-width: 640px;
+  margin: auto;
+  background: #f3f5f7;
+  position: relative;
+  font-family: 'microsoft yahei', Arial, Verdana, "\5b8b\4f53";
+  line-height: 1;
+}
+
+.carousel-control.left,
+.carousel-control.right {
+  background-image: none
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.grid {
+  width: 100%;
+}
+
+.grid .tile_2 {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  padding: .25rem;
+}
+
+.grid .tile_2 div {
+  background-color: white;
+}
+
+.primary-img {
+  width: 100%;
+}
+
+.product-info {
+  background-color: white;
+}
+
 .logo-banner {
   width: 100%;
   border: 2px darkorange solid;
